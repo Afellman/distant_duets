@@ -1,0 +1,29 @@
+{
+  "name": "distant_duets",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Afellman/distant_duets.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Afellman/distant_duets/issues"
+  },
+  "homepage": "https://github.com/Afellman/distant_duets#readme",
+  "dependencies": {
+    "ejs": "^3.1.2",
+    "express": "^4.17.1",
+    "get-mp3-duration": "^1.0.0",
+    "howler": "^2.1.3",
+    "nodemailer": "^6.4.6",
+    "nodemailer-smtp-transport": "^2.7.4"
+  }
+}

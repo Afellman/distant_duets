@@ -1,0 +1,14 @@
+[
+    {
+        "audio": "/audio/zazen.mp3",
+        "artists": "Insomniac Hotel",
+        "title": "zazen",
+        "img": "/images/demo.jpg"
+    },
+    {
+        "audio": "/audio/zazen 3.mp3",
+        "artists": "Insomniac Hotel",
+        "title": "zazen 3",
+        "img": "/images/demo.jpg"
+    }
+]
