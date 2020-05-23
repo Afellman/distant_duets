@@ -18,8 +18,19 @@ class AudioObj {
         this._position = val;
         document.getElementById("time-passed-" + this.title).innerText = this.timePassed(val);
         document.getElementById("time-remain-" + this.title).innerText = this.timeLeft(val);
+        this.moveBall();
+
+
     }
 
+    moveBall() {
+        let position = Math.round(this.position);
+        const ballElement = document.getElementById("track-ball-" + this.title);
+        const duration = this.duration / 1000;
+        const trackWidth = ballElement.parentElement.getBoundingClientRect().width;
+        const currentX = mapNumbers(position, 0, duration, 0, trackWidth);
+        ballElement.style.transform = `translateX(${Math.round(currentX)}px)`;
+    }
     timeLeft(secondsPassed) {
         const secondsLeft = this.duration / 1000 - secondsPassed;
         return durationInMinutes(secondsLeft);
@@ -39,15 +50,8 @@ class AudioObj {
     }
 
     startInterval() {
-        const ballElement = document.getElementById("track-ball-" + this.title);
-        const duration = this.duration / 1000;
-        const trackWidth = ballElement.parentElement.getBoundingClientRect().width;
-
         this.interval = setInterval(() => {
-            let position = this.position;
-            const currentX = mapNumbers(position, 0, duration, 0, trackWidth);
-            ballElement.style.transform = `translateX(${currentX}px)`;
-            this.position = position + 1;
+            this.position++;
         }, 1000);
     }
 }
@@ -64,9 +68,9 @@ $.get("/tracks").then((tracks) => {
 function attachListeners() {
     $(".control-play").on("click", togglePlay);
     $(".control-begin").on("click", toggleBegin);
-    $('.track-search').on('click', seek);
-    $('.track-ball').on('drag', dragStart);
-    // $('.track-ball').on('dragstart', dragStart);
+    $('.track-search')
+        .mouseup(seek);
+    // $('.track-ball').mousedown(dragBall)
     $('#logo').click(() => {
         location.href = "/"
     });
@@ -76,14 +80,21 @@ function buildTrackElements(tracks) {
     $("#boxDiv").append(tracks.map(track => {
         audioObj[track.title] = new AudioObj(track);
         return (
-            `<div class="col-md-6 track-wrapper"> 
-                <div class="row">
-                    <div class="col">
-                        <img class="track-img" src="${track.img}"/>
-                    </div>
+            `
+            <div class="col-md-6 track-wrapper">
+                <img class="track-img" src="${track.img}"/>
+                <div class="track-info">
+                    <span class="track-title">${track.title}</span> 
+                    <span class="track-artists">
+                        <a target="_blank" href="${track.link1}">
+                            ${track.artist1}
+                        </a> + 
+                        <a target="_blank" href="${track.link2}">
+                            ${track.artist2}
+                        </a>
+                    </span>
                 </div>
-                ${track.title} <span style="float:right;"><a target="_blank" href="${track.link1}">${track.artist1}</a> + <a target="_blank" href="${track.link2}">${track.artist2}</a></span>
-                <div class="row">
+                <div class="row" style="clear:right">
                     <div class="col">
                         <div class="player">
                             <audio id="track-${track.title}" data-playing="false" src="${track.audio}"></audio>
@@ -91,7 +102,7 @@ function buildTrackElements(tracks) {
                             <button id="control-play-${track.title}" data-name="${track.title}" class="control-play">
                                 <span data-name="${track.title}"></span>
                             </button>
-                            <div class="loading-gif" style="display: none; background-image: url('/images/loading_gif.gif');" id="loading-gif-${track.title}"></div>
+                            <div class="loading-gif" style="display: none;" id="loading-gif-${track.title}"></div>
                             <div class="time-passed" id="time-passed-${track.title}"}>00:00</div>
                             <div class="track-progress">
                                 <div class="track-search" data-title="${track.title}">
@@ -102,7 +113,8 @@ function buildTrackElements(tracks) {
                         </div>
                     </div>
                 </div>
-            </div>`
+            </div>
+            `
         );
     }));
 }
@@ -111,10 +123,17 @@ function durationInMinutes(seconds) {
     return new Date(seconds * 1000).toISOString().substr(14, 5)
 }
 
-function dragStart(e) {
-    const ball = e.target;
-    const pos = e.pageX - $(this).parent().offset().left
-    ball.style.transform = `translateX(${pos}px)`;
+function dragBall(e) {
+    const func = () => {
+        const pos = e.pageX - $(this).parent().offset().left
+        this.style.transform = `translateX(${pos}px)`;
+    };
+    $(this).mousemove(func)
+    $(this).mouseup(() => {
+        $(this).off("mousemove", func)
+    })
+
+
 };
 
 function seek(e) {
