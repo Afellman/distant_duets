@@ -1,14 +1,12 @@
 [
     {
-        "audio": "/audio/zazen.mp3",
-        "artists": "Insomniac Hotel",
-        "title": "zazen",
-        "img": "/images/demo.jpg"
-    },
-    {
-        "audio": "/audio/zazen 3.mp3",
-        "artists": "Insomniac Hotel",
-        "title": "zazen 3",
-        "img": "/images/demo.jpg"
+        "audio": "/audio/untold.mp3",
+        "artist1": "insomniac hotel",
+        "artist2": "Jon Snyder",
+        "link1": "https://linktr.ee/insomniachotel",
+        "link2": "https://www.instagram.com/jonplaysguitarviol/",
+        "title": "untold",
+        "img": "/images/untold.jpg",
+        "date": "5/24/20"
     }
 ]
