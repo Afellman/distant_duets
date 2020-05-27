@@ -23,6 +23,16 @@ class AudioObj {
 
     }
 
+    onEnd(e) {
+        console.log(e);
+        setTimeout(() => {
+            this.context.seek()
+            this.position = 0;
+            this.context.play();
+
+        }, 2000); // Waiting 2 seconds before starting the track again. 
+    }
+
     moveBall() {
         let position = Math.round(this.position);
         const ballElement = document.getElementById("track-ball-" + this.title);
@@ -163,6 +173,7 @@ function togglePlay(e) {
     if (!thisAudioObj.loaded) {
         thisAudioObj.context = new Howl({
             src: [thisAudioObj.audio],
+            onend: () => thisAudioObj.onEnd(),
             onload: () => {
                 audioObj[thisAudioObj.title].onLoad();
 
