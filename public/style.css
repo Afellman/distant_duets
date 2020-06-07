@@ -17,10 +17,6 @@ a {
     color: black;
 }
 
-hr {
-    margin-bottom: 2rem;
-}
-
 button:focus {
     outline: none;
 }
@@ -61,13 +57,14 @@ button:focus {
 .track-wrapper {
     max-width: 400px;
     margin: auto;
+    margin-bottom: 2em;
 }
 
 .player {
     display: flex;
     flex-direction: row;
     box-sizing: border-box;
-    margin: 1em 0;
+    margin-top: 1em;
     padding: 0 12px;
     width: 100%;
     align-items: center;
@@ -182,6 +179,7 @@ button:focus {
     list-style-position: inside;
 }
 
+
 @media screen and (max-width: 768px){
     .links > span {
         padding: 10px;
@@ -190,6 +188,7 @@ button:focus {
      #logo{
         height:  346px;
     }
+
 }
 /* .two {
     font-size: 1.3em;

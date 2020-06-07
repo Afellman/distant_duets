@@ -5,7 +5,7 @@ const fs = require('fs');
 const getMP3Duration = require('get-mp3-duration')
 var nodemailer = require('nodemailer');
 var smtpTransport = require('nodemailer-smtp-transport');
-
+const port = process.argv[2] || 80
 
 // require('routes')(app, path)
 app.set('view engine', 'ejs');
@@ -107,8 +107,8 @@ function attachDuration(tracks) {
 }
 
 
-app.listen(80, () => {
-    console.log('80 is the magic port');
+app.listen(port, () => {
+    console.log(port + ' is the magic port');
 });
 
 

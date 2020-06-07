@@ -19,8 +19,6 @@ class AudioObj {
         document.getElementById("time-passed-" + this.title).innerText = this.timePassed(val);
         document.getElementById("time-remain-" + this.title).innerText = this.timeLeft(val);
         this.moveBall();
-
-
     }
 
     onEnd(e) {
@@ -87,7 +85,8 @@ function attachListeners() {
 }
 
 function buildTrackElements(tracks) {
-    $("#boxDiv").append(tracks.map(track => {
+    const reversedTracks = tracks.reverse();
+    $("#boxDiv").append(reversedTracks.map(track => {
         audioObj[track.title] = new AudioObj(track);
         return (
             `
