@@ -56,7 +56,6 @@ button:focus {
 
 .track-wrapper {
     max-width: 400px;
-    margin: 0 auto;
     margin-bottom: 2em;
 }
 
@@ -115,6 +114,7 @@ button:focus {
 .time-remain, .time-passed {
     min-width: 57px;
 }
+
 
 .control-play {
     display: flex;
@@ -204,6 +204,17 @@ button:focus {
     .track-artists {
         float: none;
         display: block;
+    }
+
+    .track-wrapper {
+        margin: 0 auto;
+    }
+
+}
+
+@media screen and (max-width: 992px) {
+    .track-wrapper {
+        margin: 0 auto;
     }
 
 }

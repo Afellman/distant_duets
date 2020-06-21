@@ -87,13 +87,16 @@ function buildTrackElements(tracks) {
     const reversedTracks = tracks.reverse();
     $("#boxDiv").append(reversedTracks.map(track => {
         audioObj[track.title] = new AudioObj(track);
+        const isTooLong = track.title.length +
+            track.artist1.length +
+            track.artist2.length > 36 && (window.innerWidth > 1200 || window.innerWidth < 400);
         return (
             `
-            <div class="col-md-4 track-wrapper">
+            <div class="col-xl-4 track-wrapper">
                 <img class="track-img" src="${track.img}"/>
-                <div class="track-info">
+                <div class="track-info" style="${isTooLong ? "min-height: 49px;" : ""}">
                     <span class="track-title">${track.title}</span> 
-                    <span class="track-artists">
+                    <span class="track-artists" style="${isTooLong ? "float: left !important" : ""}">
                         <a target="_blank" href="${track.link1}">
                             ${track.artist1}
                         </a> + 
@@ -102,7 +105,7 @@ function buildTrackElements(tracks) {
                         </a>
                     </span>
                 </div>
-                <div class="row" style="clear:right">
+                <div class="row" style="clear:both">
                     <div class="col">
                         <div class="player">
                             <audio id="track-${track.title}" data-playing="false" src="${track.audio}"></audio>
