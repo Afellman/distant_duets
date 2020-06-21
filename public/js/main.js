@@ -22,7 +22,6 @@ class AudioObj {
     }
 
     onEnd(e) {
-        console.log(e);
         setTimeout(() => {
             this.context.seek()
             this.position = 0;
@@ -90,7 +89,7 @@ function buildTrackElements(tracks) {
         audioObj[track.title] = new AudioObj(track);
         return (
             `
-            <div class="col-md-6 track-wrapper">
+            <div class="col-md-4 track-wrapper">
                 <img class="track-img" src="${track.img}"/>
                 <div class="track-info">
                     <span class="track-title">${track.title}</span> 

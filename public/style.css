@@ -56,7 +56,7 @@ button:focus {
 
 .track-wrapper {
     max-width: 400px;
-    margin: auto;
+    margin: 0 auto;
     margin-bottom: 2em;
 }
 
