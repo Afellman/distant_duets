@@ -115,6 +115,9 @@ button:focus {
     min-width: 57px;
 }
 
+.track-info {
+    min-height: 49px;
+}
 
 .control-play {
     display: flex;
