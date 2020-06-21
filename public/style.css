@@ -219,5 +219,10 @@ button:focus {
     .track-wrapper {
         margin: 0 auto;
     }
+}
 
+@media screen and (min-width: 1200px) {
+    .track-info {
+        min-height: 0px;
+    }
 }
