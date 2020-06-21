@@ -18,5 +18,15 @@
         "title": "vapor",
         "img": "/images/DD2_artwork.jpg",
         "date": "6/07/20"
+    },
+    {
+        "audio": "/audio/flux.mp3",
+        "artist1": "Serena Stucke",
+        "artist2": "Shere Fraser",
+        "link1": "https://www.testucollective.com/",
+        "link2": "https://www.youtube.com/channel/UCusYq9k8zb-sO7u32AZR_aA",
+        "title": "Flux",
+        "img": "/images/DD3_artwork.jpg",
+        "date": "6/21/20"
     }
 ]
