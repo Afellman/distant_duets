@@ -85,16 +85,18 @@ function attachListeners() {
 
 function buildTrackElements(tracks) {
     const reversedTracks = tracks.reverse();
+    let gl_tooLong = false;
     $("#boxDiv").append(reversedTracks.map(track => {
         audioObj[track.title] = new AudioObj(track);
         const isTooLong = track.title.length +
             track.artist1.length +
             track.artist2.length > 36 && (window.innerWidth > 1200 || window.innerWidth < 400);
+        gl_tooLong = isTooLong;
         return (
             `
             <div class="col-xl-4 track-wrapper">
                 <img class="track-img" src="${track.img}"/>
-                <div class="track-info" style="${isTooLong ? "min-height: 49px;" : ""}">
+                <div class="track-info" style="${gl_tooLong ? "min-height: 49px;" : ""}">
                     <span class="track-title">${track.title}</span> 
                     <span class="track-artists" style="${isTooLong ? "float: left !important" : ""}">
                         <a target="_blank" href="${track.link1}">
