@@ -1,14 +1,22 @@
 [
     {
-        "audio": "/audio/zazen.mp3",
-        "artists": "Insomniac Hotel",
-        "title": "zazen",
-        "img": "/images/demo.jpg"
+        "audio": "/audio/untold.mp3",
+        "artist1": "insomniac hotel",
+        "artist2": "Jon Francis Snyder",
+        "link1": "https://linktr.ee/insomniachotel",
+        "link2": "https://www.instagram.com/jonplaysguitarviol/",
+        "title": "untold",
+        "img": "/images/untold.jpg",
+        "date": "5/24/20"
     },
     {
-        "audio": "/audio/zazen 3.mp3",
-        "artists": "Insomniac Hotel",
-        "title": "zazen 3",
-        "img": "/images/demo.jpg"
+        "audio": "/audio/vapor.mp3",
+        "artist1": "ÉMU",
+        "artist2": "Melissa Keeling",
+        "link1": "http://www.maria-takeuchi.com",
+        "link2": "http://melissakeeling.com",
+        "title": "vapor",
+        "img": "/images/DD2_artwork.jpg",
+        "date": "6/07/20"
     }
 ]

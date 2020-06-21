@@ -9,12 +9,12 @@ body {
     font-family: 'Montserrat', sans-serif;
 }
 
-a {
-    color: black;
+.container {
+    margin-top: 15px;
 }
 
-hr {
-    margin-bottom: 2rem;
+a {
+    color: black;
 }
 
 button:focus {
@@ -22,13 +22,15 @@ button:focus {
 }
 
 #logo{
-    background-image: url("images/D2D\ 2\ Low\ res.jpg");
+    background-image: url("images/logo_cropped.jpg");
     background-size: contain;
     background-repeat: no-repeat;
     margin: auto;
     height: 400px;
     max-width: 400px;
     cursor: pointer;
+    margin-bottom: 2%;
+    background-position: center;
 }
 
 .links {
@@ -41,43 +43,126 @@ button:focus {
 }
 
 .track-img {
+    max-height: 400px;
+    max-width: 400px;
     width: 100%;
+    margin-bottom: 5px;
+}
+
+.track-artists {
+    float: right;
+
 }
 
 .track-wrapper {
-    max-width: 343px;
+    max-width: 400px;
     margin: auto;
+    margin-bottom: 2em;
+}
+
+.player {
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    margin-top: 1em;
+    padding: 0 12px;
+    width: 100%;
+    align-items: center;
+    border: 1px solid #DDE2E6;
+    border-radius: 4px;
+    background: #fff;
+}
+
+.player > * {
+    display: flex;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.loading-gif {
+    background-image: url(/images/loading_gif.gif);
+    width: 37px;
+    height: 47px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.player > .track-progress {
+    padding: 5px;
+    width: 100%;
 }
 
 .track-search {
     position: relative;
-    height: 8px;
-    width: 200px;
+    height: 3px;
+    width: 100%;
     background: #80808054;
     border-radius: 3px;
-    margin-bottom: 15px;
 }
 
 .track-ball {
-    background: blue;
+    border: 2px solid #BEC8D2;
     border-radius: 50%;
     width: 15px;
     height: 15px;
     position: absolute;
-    left: 0;
-    top: -3px;
+    left: -6px;
+    top: -6px;
+    background-color: #fff;
+}
+
+.time-remain, .time-passed {
+    min-width: 57px;
 }
 
 .control-play {
-    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* width: 48px; */
+    height: 48px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+    background: rgba(91, 130, 255, 0);
+    border: none;
+    min-width: 24px;
+    /* border-radius: 4px;
     padding: 3px 12px;
     border: none;
     background: blanchedalmond;
-    box-shadow: 1px 1px #eee; 
+    box-shadow: 1px 1px #eee;  */
+}
+
+.control-play:not(.playing) > span {
+    content: '';
+    justify-content: center;
+    width: 0;
+    height: 0;
+    margin-left: 2px;
+    border-top: 7px solid transparent;
+    border-right: none;
+    border-bottom: 7px solid transparent;
+    border-left: 12px solid #212529;
+}
+
+.control-play.playing > span {
+    content: '';
+    display: flex;
+    justify-content: space-between;
+    width: 12px;
+    height: 14px;
+}
+
+.control-play.playing > span::before, .control-play.playing > span::after {
+    content: '';
+    width: 4px;
+    height: 14px;
+    background-color: #212529;
 }
 
 .control-play.playing{
-    box-shadow: 0px 0px 2px 3px #d6d6d691;
     outline: none;
 }
 
@@ -94,12 +179,26 @@ button:focus {
     list-style-position: inside;
 }
 
+
 @media screen and (max-width: 768px){
     .links > span {
         padding: 10px;
     }
+
+     #logo{
+        height:  346px;
+    }
+
 }
 /* .two {
     font-size: 1.3em;
     font-weight: 600;
 } */
+
+@media screen and (max-width: 992px) and (min-width: 768px){
+    .track-artists {
+        float: none;
+        display: block;
+    }
+
+}
