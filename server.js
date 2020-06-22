@@ -38,6 +38,10 @@ app.get('/', function (req, res) {
     //     });
     // });
 
+
+    //fs.readFile("analytics.json", (err, contents) => ({
+//	
+  //  });
     res.render("pages/index");
 });
 
