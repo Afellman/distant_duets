@@ -22,30 +22,92 @@ $("#audio").on("change", (e) => {
 
 
 $("#save-new").click((e) => {
+
     const textObj = {
         title: $("#title").val(),
-        artist1Name: $("#artist1-name").val(),
-        artist1Link: $("#artist1-link").val(),
-        artist2Name: $("#artist2-name").val(),
-        artist2Link: $("#artist2-link").val(),
+        artist1: $("#artist1-name").val(),
+        artist2: $("#artist2-name").val(),
+        link1: $("#artist1-link").val(),
+        link2: $("#artist2-link").val(),
+        img: img.name,
+        audio: audio.name
     };
+
+    if (!textObj.link1.includes("http")) {
+        textObj.link1 = "http://" + textObj.link1;
+    }
+
+    if (!textObj.link2.includes("http")) {
+        textObj.link2 = "http://" + textObj.link2;
+    }
 
     $.post("/api/newSongText", textObj).then((res) => {
         console.log(res)
-    })
+    });
 
     const audioForm = new FormData();
     audioForm.append('audio', audio);
 
-    $.post("/api/newSongAudio", audioForm).then((res) => {
-        console.log(res)
-    });
-
-
-    const imgForm = new FormData();
-    imgForm.append('img', img);
-
-    $.post("/api/newSongImg", imgForm).then((res) => {
-        console.log(res)
+    $.ajax({
+        method: "POST",
+        url: "/api/newSongAudio",
+        data: audioForm,
+        contentType: false,
+        processData: false,
+        success: (res) => {
+            console.log(res);
+        },
+        error: (res) => {
+            console.log(res);
+        }
     })
+
+    let quality = 0.8;
+    if (img.size > 2000000) {
+        quality = 0.6;
+    }
+    new Compressor(img, {
+        quality: quality,
+        convertSize: 1000000,
+        success(result) {
+            const imgForm = new FormData();
+            imgForm.append('img', result, result.name);
+            $.ajax({
+                method: "POST",
+                url: "/api/newSongImg",
+                data: imgForm,
+                contentType: false,
+                processData: false,
+                success: (res) => {
+                    console.log(res);
+                },
+                error: (res) => {
+                    console.log(res);
+                }
+            })
+        }
+    });
 });
+
+
+1 ## General
+set number
+set linebreak
+set showbreak = +++
+    set textwidth = 100
+set showmatch
+set visualbell
+set hlsearch
+set smartcase
+set ignorecase
+set incsearch
+set autoindent
+set shiftwidth = 4
+set smartindent
+set smarttab
+set softtabstop = 4
+
+
+set ruler
+set undolevels = 1000
+set backspace = indent, eol, start  

@@ -78,14 +78,44 @@ app.get("/tracks", (req, res) => {
 
 app.post("/api/newSongText", (req, res) => {
     console.log(req.body);
+    // Getting the JSON with the current track list.
+    fs.readFile(__dirname + "/tracks.json", (err, contents) => {
+        if (err) throw err;
+        const parsedContents = JSON.parse(contents);
+        const saveJSON = req.body;
+        const todaysDate = new Date();
+        // Updating with object data.
+        saveJSON.date = todaysDate.getMonth() + "/" + todaysDate.getDate() + "/" + todaysDate.getFullYear();
+        saveJSON.audio = "/audio/" + saveJSON.audio
+        saveJSON.img = "/images/" + saveJSON.img
+        parsedContents.push(req.body);
+        console.log(parsedContents);
+
+        // Resaving the JSON
+        fs.writeFile(__dirname + "/tracks.json", JSON.stringify(parsedContents), (err) => {
+            if (err) throw err;
+        });
+    });
 });
 
 app.post("/api/newSongAudio", (req, res) => {
-    console.log(req.files);
+    const audioName = req.files.audio.name;
+    const audioFile = req.files.audio.data;
+    fs.writeFile(__dirname + "/public/audio/" + audioName, audioFile, "binary", (err) => {
+        if (err) throw err;
+        console.log(audioName + " Saved")
+        res.sendStatus(200);
+    });
 });
 
 app.post("/api/newSongImg", (req, res) => {
-    console.log(req.files);
+    const imageName = req.files.img.name;
+    const imageFile = req.files.img.data;
+    fs.writeFile(__dirname + "/public/images/" + imageName, imageFile, "binary", (err) => {
+        if (err) throw err;
+        console.log(imageName + " Saved")
+        res.sendStatus(200);
+    });
 });
 
 // app.post('/contact-submit', (req, res) => {
