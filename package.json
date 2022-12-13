@@ -20,7 +20,7 @@
   "homepage": "https://github.com/Afellman/distant_duets#readme",
   "dependencies": {
     "ejs": "^3.1.2",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "express-fileupload": "^1.1.7-alpha.3",
     "get-mp3-duration": "^1.0.0",
     "howler": "^2.1.3",
